@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title><%= htmlWebpackPlugin.options.title %></title>
+	<!-- 如果在多个页面中都利用htmlWebpackPlugin插件注入相同的js文件，那么利用模板生成的页面中就会出现很多src链接地址，过多的链接地址会造成多次http请求，降低页面性能，为了减少这种http请求，可以利用inline将js文件引入到模板中，引用方法如下： -->
+	<script type="text/javascript">
+		<%= compilation.assets[htmlWebpackPlugin.files.chunks.main.entry.substr(htmlWebpackPlugin.files.publicPath.length)].source() %>
+	</script>
+</head>
+<body>
+	<!-- 即使多页面公用的js文件通过inline插入到模板之后，htmlWebpackPlugin插件还是会将公共的js注入到利用模板生成的各个页面中，此时，我们需要对js文件进行一个筛选，将公用的js文件不再注入到各个页面中，具体方法如下： -->
+	<!-- 先循环遍历所有的js文件，然后利用if进行判断，除此之外，还要配合着htmlWebpackPlugin的inject参数使用，让inject取false -->
+	<% for(var key in htmlWebpackPlugin.files.chunks){ %> 
+	    <% if(key !== 'main'){ %>
+	         <script type="text/javascript" src="<%= htmlWebpackPlugin.files.chunks[key].entry %>"></script>
+	    <% } %>
+	<% } %>
+</body>
+</html>

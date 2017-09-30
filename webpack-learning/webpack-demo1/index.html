@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<!-- 为了能够引用（读取）htmlWebpackPlugin中设置的title参数，需要对title标签进行改造 -->
+	<title><%= htmlWebpackPlugin.options.title %></title>
+	<script src="<%= htmlWebpackPlugin.files.chunks.main.entry%>" type="text/javascript"></script>
+</head>
+<body>
+	<!-- 在html文件中获取htmlWebpackPlugin中的参数用的是如下写法 -->
+	<%= htmlWebpackPlugin.options.date %>
+
+	<!-- 在html文件中运行js脚本用的是如下写法 -->
+	<!-- 查看htmlWebpackPlugin中所有的参数 -->
+	<% for (var key in htmlWebpackPlugin) { %>
+	    <%= key %>
+    <% } %>
+
+    <!-- 循环遍历htmlWebpackPlugin后发现有两个参数：files和options，继续对files和options进行循环遍历 -->
+    <% for (var key in htmlWebpackPlugin.files) { %>
+        <%= key %>: <%= JSON.stringify(htmlWebpackPlugin.files[key]) %>
+    <% } %>
+
+
+    <% for (var key in htmlWebpackPlugin.options) { %>
+        <%= key %>: <%= JSON.stringify(htmlWebpackPlugin.options[key]) %>
+    <% } %>
+
+
+    <script src="<%= htmlWebpackPlugin.files.chunks.a.entry%>" type="text/javascript"></script>
+    <!-- 有时候我们需要将js文件分别插入到head标签或者body标签，这种需求在webpack配置中是无法实现的，因此，需要按照上面的写法来实现，注意此时webpack中的inject的参数要为false -->
+</body>
+</html>
