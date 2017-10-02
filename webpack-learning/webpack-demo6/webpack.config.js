@@ -40,14 +40,14 @@ module.exports = {
 		    	]
 		    },
 		    {
-		    	// 使用less-loader来处理less文件，安装less-loader命令：npm install --save-dev less-loader。less-loader依赖于less，如果没有安装less，则需要安装less，安装命令：npm install --save-dev less。
-		    	test: /\.less$/,
+		    	// 使用sass-loader来处理sass文件（sass文件以scss结尾），安装sass-loader命令：npm install --save-dev sass-loader。sass-loader依赖于node-sass，如果没有安装node-sass，则需要安装node-sass，安装命令：npm install --save-dev node-sass。
+		    	test: /\.scss$/,
 		    	use: [{
 		    		loader: 'style-loader' //利用js字符串创建一个style标签（结点node）
 		    	}, {
 		    		loader: 'css-loader' //将css转换为commonJS
 		    	}, {
-		    		loader: 'postcss-loader', //postcss-loader应该位于css-loader和less-loader中间
+		    		loader: 'postcss-loader', //postcss-loader应该位于css-loader和sass-loader中间
 		    		options: {
 		    			plugins: [
 		    			    require('postcss-import'),
@@ -55,7 +55,7 @@ module.exports = {
 		    			]
 		    		}
 		    	}, {
-		    		loader: 'less-loader' //将less文件编译（compile）成css文件
+		    		loader: 'sass-loader' //将sass文件编译（compile）成css文件
 		    	}]
 		    }
 		]
