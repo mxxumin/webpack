@@ -8,23 +8,29 @@
 ### 2、安装
 
 安装webpack
+
 `npm install --save-dev webpack`
 
 安装html相关loader和插件
+
 `npm install --save-dev html-webpack-plugin`
 
 安装js相关loader和插件
+
 `npm install --save-dev babel-loader babel-core babel-preset-env`
 
 安装css相关loader和插件
+
 `npm install --save-dev style-loader css-loader postcss-loader postcss-import autoprefixer sass-loader node-sass`
 
 安装模板处理相关loader和插件
+
 `npm install --save-dev html-loader`
 
 `npm install --save-dev ejs-loader`
 
 安装图片或其他文件处理相关的loader
+
 `npm install --save-dev file-loader`
 
 `npm install --save-dev url-loader`
@@ -67,4 +73,4 @@
 
 * 使用命令`webpack hello.js hello.bundle.js --module-bind 'css=style-loader!css-loader' --progress --display-modules --display-reasons`在打包过程中显示打包的进度、模块以及打包模块的原因；
 
-*使用命令`webpack --config webpack.config.js`，通过--config来指定要执行的配置的文件，上面指定的是执行webpack.config.js中的配置
+* 使用命令`webpack --config webpack.config.js`，通过--config来指定要执行的配置的文件，上面指定的是执行webpack.config.js中的配置
