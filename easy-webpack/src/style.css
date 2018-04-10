@@ -1,0 +1,14 @@
+/* 此处填写css代码 */
+.logo{
+  margin-top: 50px;
+  text-align: center;
+}
+
+.logo img{
+  width: 250px;
+  height: auto;
+}
+
+h1{
+  text-align: center;
+}
